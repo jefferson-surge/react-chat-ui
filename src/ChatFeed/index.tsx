@@ -70,8 +70,8 @@ export default class ChatFeed extends React.Component {
         return (
           <BubbleGroup
             key={index}
-            messages={messageGroup}
-            id={message.id}
+            messages={messageGroup as [Message]}
+            id={message.id as number}
             showSenderName={showSenderName}
             chatBubble={ChatBubble}
             bubbleStyles={bubbleStyles}
