@@ -47,7 +47,7 @@ export default class ChatBubble extends React.Component {
         }}
       >
         <div style={chatBubbleStyles}>
-          <p style={{ ...styles.p, ...text }}>{this.props.message.message}</p>
+          <p style={{ ...styles.p, ...text }} dangerouslySetInnerHTML={{ __html: this.props.message.message }}></p>
         </div>
       </div>
     );
