@@ -20,6 +20,7 @@ interface ChatFeedInterface {
     messages: any;
     showSenderName?: boolean;
     chatBubble?: React.Component;
+    classNameArray?: string[];
   };
 }
 
@@ -60,12 +61,17 @@ export default class ChatFeed extends React.Component {
     const ChatBubble = chatBubble || DefaultChatBubble;
 
     let group = [];
+    let classNamesForGroup = [];
 
     const messageNodes = messages.map((message, index) => {
       group.push(message);
+      if (this.props.classNameArray && this.props.classNameArray.length > index) {
+        classNamesForGroup.push(this.props.classNameArray[index])
+      }
       // Find diff in message type or no more messages
       if (index === messages.length - 1 || messages[index + 1].id !== message.id) {
         const messageGroup = group;
+        const messageGroupClassNameArray = classNamesForGroup;
         group = [];
         return (
           <BubbleGroup
@@ -75,6 +81,7 @@ export default class ChatFeed extends React.Component {
             showSenderName={showSenderName}
             chatBubble={ChatBubble}
             bubbleStyles={bubbleStyles}
+            classNameArray={messageGroupClassNameArray.length > 0 ? messageGroupClassNameArray as [string] : undefined}
           />
         );
       }

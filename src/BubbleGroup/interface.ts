@@ -6,4 +6,5 @@ export default interface BubbleGroupInterface {
   showSenderName: boolean;
   chatBubble: ChatBubble;
   bubbleStyles: any;
+  classNameArray?: string[];
 };

@@ -22,6 +22,7 @@ export default class BubbleGroup extends React.Component {
       showSenderName,
       chatBubble,
       senderName,
+      classNameArray,
     } = this.props;
     const ChatBubble = chatBubble || DefaultChatBubble;
     const sampleMessage = messages[0];
@@ -33,6 +34,7 @@ export default class BubbleGroup extends React.Component {
           message={message}
           bubblesCentered={bubblesCentered}
           bubbleStyles={bubbleStyles}
+          classNameString={classNameArray && classNameArray.length > i ? classNameArray[i] : undefined}
         />
       );
     });
