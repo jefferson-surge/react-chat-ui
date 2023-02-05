@@ -7,4 +7,6 @@ export default interface ChatBubbleProps {
     text: object
   }
   bubblesCentered: boolean
+  classNameString?: string
+  style?: object
 }

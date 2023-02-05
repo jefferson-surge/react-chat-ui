@@ -25,20 +25,22 @@ export default class ChatBubble extends React.Component {
     const chatBubbleStyles =
       this.props.message.id === 0
         ? {
-            ...styles.chatbubble,
-            ...bubblesCentered ? {} : styles.chatbubbleOrientationNormal,
-            ...chatbubble,
-            ...userBubble,
-          }
+          ...styles.chatbubble,
+          ...bubblesCentered ? {} : styles.chatbubbleOrientationNormal,
+          ...chatbubble,
+          ...userBubble,
+          ...this.props.style,
+        }
         : {
-            ...styles.chatbubble,
-            ...styles.recipientChatbubble,
-            ...bubblesCentered
-              ? {}
-              : styles.recipientChatbubbleOrientationNormal,
-            ...userBubble,
-            ...chatbubble,
-          };
+          ...styles.chatbubble,
+          ...styles.recipientChatbubble,
+          ...bubblesCentered
+            ? {}
+            : styles.recipientChatbubbleOrientationNormal,
+          ...userBubble,
+          ...chatbubble,
+          ...this.props.style,
+        };
 
     return (
       <div
@@ -46,7 +48,7 @@ export default class ChatBubble extends React.Component {
           ...styles.chatbubbleWrapper,
         }}
       >
-        <div style={chatBubbleStyles}>
+        <div style={chatBubbleStyles} className={this.props.classNameString || ""}>
           <p style={{ ...styles.p, ...text }} dangerouslySetInnerHTML={{ __html: this.props.message.message }}></p>
         </div>
       </div>
