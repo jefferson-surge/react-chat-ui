@@ -7,4 +7,5 @@ export default interface BubbleGroupInterface {
   chatBubble: ChatBubble;
   bubbleStyles: any;
   classNameArray?: string[];
+  styleArray?: object[];
 };

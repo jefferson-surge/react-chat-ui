@@ -29,6 +29,7 @@ export default class ChatBubble extends React.Component {
           ...bubblesCentered ? {} : styles.chatbubbleOrientationNormal,
           ...chatbubble,
           ...userBubble,
+          ...this.props.style,
         }
         : {
           ...styles.chatbubble,
@@ -38,6 +39,7 @@ export default class ChatBubble extends React.Component {
             : styles.recipientChatbubbleOrientationNormal,
           ...userBubble,
           ...chatbubble,
+          ...this.props.style,
         };
 
     return (
