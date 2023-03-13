@@ -15,6 +15,7 @@ export default {
     paddingLeft: 14,
     paddingRight: 14,
     width: '-webkit-fit-content',
+    whiteSpace: 'pre-line',
   },
   chatbubbleOrientationNormal: {
     float: 'right',
