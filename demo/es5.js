@@ -4,6 +4,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -60,6 +62,39 @@ var customBubble = function customBubble(props) {
   );
 };
 
+var ExternalComponent = function ExternalComponent(props) {
+  var _React$useState = _react2.default.useState(0),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      count = _React$useState2[0],
+      setCount = _React$useState2[1];
+
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'ul',
+      null,
+      _react2.default.createElement(
+        'li',
+        null,
+        'This is a React component with internal state.'
+      ),
+      _react2.default.createElement(
+        'li',
+        null,
+        count + ' ',
+        _react2.default.createElement(
+          'button',
+          { onClick: function onClick() {
+              return setCount(count + 1);
+            } },
+          'Increment'
+        )
+      )
+    )
+  );
+};
+
 var Chat = function (_React$Component) {
   _inherits(Chat, _React$Component);
 
@@ -72,6 +107,10 @@ var Chat = function (_React$Component) {
       messages: [new _lib.Message({ id: 'Mark', message: 'Hey guys!', senderName: 'Mark' }), new _lib.Message({
         id: 2,
         message: 'Hey! Evan here. react-chat-ui is pretty dooope.',
+        senderName: 'Evan'
+      }), new _lib.Message({
+        id: 3,
+        message: _react2.default.createElement(ExternalComponent, null),
         senderName: 'Evan'
       })],
       useCustomBubble: false,
