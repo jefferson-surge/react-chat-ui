@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { ChatFeed, ChatBubble, BubbleGroup, Message } from '../lib';
+import { BubbleGroup, ChatBubble, ChatFeed, Message } from '../lib';
 
 const styles = {
   button: {
@@ -38,6 +38,21 @@ const customBubble = props => (
   </div>
 );
 
+const ExternalComponent = props => {
+  const [count, setCount] = React.useState(0)
+  return (
+    <div>
+      <ul>
+        <li>This is an external React component with state.</li>
+        <li>
+          {`Count: ${count} `}
+          <button onClick={() => setCount(count + 1)}>Increment</button>
+        </li>
+      </ul>
+    </div>
+  );
+};
+
 class Chat extends React.Component {
   constructor() {
     super();
@@ -47,6 +62,13 @@ class Chat extends React.Component {
         new Message({
           id: 2,
           message: 'Hey! Evan here. react-chat-ui is pretty dooope.',
+          senderName: 'Evan',
+        }),
+        new Message({
+          id: 3,
+          message: (
+            <ExternalComponent />
+          ),
           senderName: 'Evan',
         }),
       ],

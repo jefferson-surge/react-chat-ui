@@ -16,7 +16,7 @@ export default class ChatBubble extends React.Component {
   }
 
   public render() {
-    const { bubblesCentered } = this.props;
+    const { bubblesCentered, message } = this.props;
     let { bubbleStyles } = this.props;
     bubbleStyles = bubbleStyles || defaultBubbleStyles;
     const { userBubble, chatbubble, text } = bubbleStyles;
@@ -42,15 +42,21 @@ export default class ChatBubble extends React.Component {
           ...this.props.style,
         };
 
+    // If message content is a string, render as a bubble.
+    // Otherwise, it's a React component, so render as-is.
+    const bubbleContent = typeof message.message === 'string' ? (
+      <div style={chatBubbleStyles} className={this.props.classNameString || ""}>
+        <p style={{ ...styles.p, ...text }} dangerouslySetInnerHTML={{ __html: this.props.message.message }}></p>
+      </div>
+      ) : message.message;
+
     return (
       <div
         style={{
           ...styles.chatbubbleWrapper,
         }}
       >
-        <div style={chatBubbleStyles} className={this.props.classNameString || ""}>
-          <p style={{ ...styles.p, ...text }} dangerouslySetInnerHTML={{ __html: this.props.message.message }}></p>
-        </div>
+        {bubbleContent}
       </div>
     );
   }

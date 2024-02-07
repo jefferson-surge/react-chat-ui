@@ -1,3 +1,4 @@
+import { React } from "react";
 /**
  * A statndardized message object for use
  * in rendering messages in the chat feed.
@@ -5,7 +6,7 @@
 
 interface MessageData {
   id: number | string;
-  message: string;
+  message: string | React.ReactNode;
   senderName?: string;
 }
 
@@ -14,7 +15,7 @@ export default class Message {
    * Message object for organizing and storing current message data.
    */
   id: number | string;
-  message: string;
+  message: string | React.ReactNode;
   senderName?: string;
   constructor(messageData: MessageData) {
     this.id = messageData.id; // id of the sender (0 is reserved for "blue bubble")
